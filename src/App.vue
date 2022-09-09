@@ -4,7 +4,14 @@
 // import Payment from "./components/Payment.vue"
 // import Tweet from "./components/Tweet.vue"
 // import Persons from './components/Persons.vue';
-import CardList from "./components/CardList.vue"
+// import CardList from "./components/CardList.vue"
+import TodoList from './components/TodoList.vue';
+import { provide } from "vue"
+import { todoKey, todos } from './useTodo';
+
+// provide("todos", todos)
+// provide("addTodo", addTodo)
+provide(todoKey, todos)
 </script>
 
 <template>
@@ -12,6 +19,7 @@ import CardList from "./components/CardList.vue"
     <!-- <Payment></Payment> -->
     <!-- <Tweet /> -->
     <!-- <Persons /> -->
-    <CardList />
+    <!-- <CardList /> -->
+    <TodoList />
   </div>
 </template>
