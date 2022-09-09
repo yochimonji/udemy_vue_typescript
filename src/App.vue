@@ -3,13 +3,15 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import Payment from "./components/Payment.vue"
 // import Tweet from "./components/Tweet.vue"
-import Persons from './components/Persons.vue';
+// import Persons from './components/Persons.vue';
+import CardList from "./components/CardList.vue"
 </script>
 
 <template>
   <div class="p-6 max-w-xl mx-auto">
     <!-- <Payment></Payment> -->
     <!-- <Tweet /> -->
-    <Persons />
+    <!-- <Persons /> -->
+    <CardList />
   </div>
 </template>
