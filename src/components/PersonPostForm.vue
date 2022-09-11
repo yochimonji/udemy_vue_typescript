@@ -21,18 +21,36 @@
 </script>
 
 <template>
-    <div class="flex flex-col items-center bg-gray-200 rounded w-96">
-        <div class="flex flex-col justify-between w-4/5 m-4">
-            <div class="flex justify-between pb-4">
-                <span>name:</span>
-                <input type="text" v-model="inputtingName" class="border rounded w-3/5" :class="isValidName ? 'bg-white' : 'bg-red-300'">
-            </div>
-            <span v-show="!isValidName" class="text-red-400">{{ nameLengthLimit }} characters or less, please</span>
-            <div class="flex justify-between pb-4">
-                <span>age:</span>
-                <input type="number" v-model="inputtingAge" class="border rounded w-3/5">
-            </div>
-        </div>
-        <button @click="register" :disabled="!isValidName" class="bg-white shadow-md rounded p-2 mb-4">register</button>
+  <div class="flex flex-col items-center bg-gray-200 rounded w-96">
+    <div class="flex flex-col justify-between w-4/5 m-4">
+      <div class="flex justify-between pb-4">
+        <span>name:</span>
+        <input
+          v-model="inputtingName"
+          type="text"
+          class="border rounded w-3/5"
+          :class="isValidName ? 'bg-white' : 'bg-red-300'"
+        >
+      </div>
+      <span
+        v-show="!isValidName"
+        class="text-red-400"
+      >{{ nameLengthLimit }} characters or less, please</span>
+      <div class="flex justify-between pb-4">
+        <span>age:</span>
+        <input
+          v-model="inputtingAge"
+          type="number"
+          class="border rounded w-3/5"
+        >
+      </div>
     </div>
+    <button
+      :disabled="!isValidName"
+      class="bg-white shadow-md rounded p-2 mb-4"
+      @click="register"
+    >
+      register
+    </button>
+  </div>
 </template>

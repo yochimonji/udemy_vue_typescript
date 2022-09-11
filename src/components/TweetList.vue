@@ -18,8 +18,17 @@ defineProps<Props>()
 </script>
 
 <template>
-    <li v-for="tweet in tweets" v-bind:key="tweet.id" class="list-none mb-3 rounded flex justify-between bg-sky-200 p-2 w-72">
-        <span>{{ tweet.description }}</span>
-        <button class="bg-red-400 hover:bg-red-600 p-2 m-4 rounded shadow" @click="deleteTweet(tweet.id)">delete</button>
-    </li>
+  <li
+    v-for="tweet in tweets"
+    :key="tweet.id"
+    class="list-none mb-3 rounded flex justify-between bg-sky-200 p-2 w-72"
+  >
+    <span>{{ tweet.description }}</span>
+    <button
+      class="bg-red-400 hover:bg-red-600 p-2 m-4 rounded shadow"
+      @click="deleteTweet(tweet.id)"
+    >
+      delete
+    </button>
+  </li>
 </template>

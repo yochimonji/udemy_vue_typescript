@@ -31,7 +31,7 @@ onMounted(async () => {
   console.log(data.value)
 })
 
-const onSubmit = (e: Event) => {
+const onSubmit = () => {
   // fetch("https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json", {
   //   method: "POST",
   //   headers: {
@@ -54,34 +54,60 @@ const onSubmit = (e: Event) => {
   <form>
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-model.trim="userName" v-focus />
+      <input
+        id="user-name"
+        v-model.trim="userName"
+        v-focus
+        name="user-name"
+        type="text"
+      >
     </div>
     <div class="form-control">
       <h2>What are you interested in?</h2>
       <div>
-        <input id="interest-react" name="interest" type="checkbox" value="react" v-model="interest" />
+        <input
+          id="interest-react"
+          v-model="interest"
+          name="interest"
+          type="checkbox"
+          value="react"
+        >
         <label for="interest-react">React.js</label>
       </div>
       <div>
-        <input id="interest-vue" name="interest" type="checkbox" value="vue" v-model="interest" />
+        <input
+          id="interest-vue"
+          v-model="interest"
+          name="interest"
+          type="checkbox"
+          value="vue"
+        >
         <label for="interest-vue">Vue.js</label>
       </div>
       <div>
         <input
           id="interest-angular"
+          v-model="interest"
           name="interest"
           type="checkbox"
           value="angular"
-          v-model="interest"
-        />
+        >
         <label for="interest-angular">Angular.js</label>
       </div>
     </div>
-    <div v-if="isLoading">Loading...</div>
-    <div v-else>{{ data }}</div>
-    <div v-if="err">{{ err }}</div>
+    <div v-if="isLoading">
+      Loading...
+    </div>
+    <div v-else>
+      {{ data }}
+    </div>
+    <div v-if="err">
+      {{ err }}
+    </div>
     <div>
-      <button @click.prevent="onSubmit">Save Data</button>
+      <button @click.prevent="onSubmit">
+        Save Data
+      </button>
     </div>
   </form>
 </template>

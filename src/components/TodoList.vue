@@ -1,17 +1,22 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="todo in todos">
-                {{ todo.title }}
-            </li>
-        </ul>
-        <button @click="addTodo('add!')">Add</button>
-    </div>
+  <div>
+    <ul>
+      <li
+        v-for="todo in todos"
+        :key="todo.id"
+      >
+        {{ todo.title }}
+      </li>
+    </ul>
+    <button @click="addTodo('add!')">
+      Add
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { inject } from 'vue';
-import { Todo, todoKey } from "../useTodo"
+import { todoKey } from "../useTodo"
 
 // const todos = inject("todos")
 // const _addTodo = inject("addTodo")
