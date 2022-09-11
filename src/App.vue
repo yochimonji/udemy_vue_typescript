@@ -5,13 +5,14 @@
 // import Tweet from "./components/Tweet.vue"
 // import Persons from './components/Persons.vue';
 // import CardList from "./components/CardList.vue"
-import TodoList from './components/TodoList.vue';
-import { provide } from "vue"
-import { todoKey, todos } from './useTodo';
+// import TodoList from './components/TodoList.vue';
+// import { provide } from "vue"
+// import { todoKey, todos } from './useTodo';
+import Form from './components/Form.vue';
 
 // provide("todos", todos)
 // provide("addTodo", addTodo)
-provide(todoKey, todos)
+// provide(todoKey, todos)
 </script>
 
 <template>
@@ -20,6 +21,7 @@ provide(todoKey, todos)
     <!-- <Tweet /> -->
     <!-- <Persons /> -->
     <!-- <CardList /> -->
-    <TodoList />
+    <!-- <TodoList /> -->
+    <Form />
   </div>
 </template>
