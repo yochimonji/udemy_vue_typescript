@@ -1,19 +1,19 @@
 <script setup lang="ts">
-    import { defineProps, defineEmits } from 'vue';
-    import {Person} from "./Persons.vue"
+import { defineProps, defineEmits } from 'vue'
+import { Person } from "./PersonWindow.vue"
 
-    type Props = {
-        persons: Person[]
-    }
+type Props = {
+  persons: Person[]
+}
 
-    defineProps<Props>()
+defineProps<Props>()
 
-    const emit = defineEmits(["delete"])
-    const onClickDelete = (id: number, name: string) => {
-        if (confirm("Delete " + name + "?")){
-            emit("delete", id)
-        }
-    }
+const emit = defineEmits(['delete'])
+const onClickDelete = (id: number, name: string) => {
+  if (confirm('Delete ' + name + '?')) {
+    emit('delete', id)
+  }
+}
 </script>
 
 <template>

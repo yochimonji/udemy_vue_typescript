@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits } from 'vue'
 
 type Tweet = {
-    id: number,
-    description: string
+  id: number
+  description: string
 }
 type Props = {
-    tweets: Tweet[]
+  tweets: Tweet[]
 }
 
-const emit = defineEmits(["delete-tweet"])
+const emit = defineEmits(['delete-tweet'])
 const deleteTweet = (id: number) => {
-    emit("delete-tweet", id)
+  emit('delete-tweet', id)
 }
 
 defineProps<Props>()

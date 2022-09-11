@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import axios from "axios"
+import { onMounted, ref } from 'vue'
+import axios from 'axios'
 
 const vFocus = {
   mounted: (el: HTMLElement) => {
     el.focus()
-  }
+  },
 }
 
 const userName = ref<string>('')
@@ -17,9 +17,11 @@ const err = ref()
 onMounted(async () => {
   isLoading.value = true
   try {
-    const response = await axios.get("https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json")
+    const response = await axios.get(
+      'https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json'
+    )
     if (response.status !== 200) {
-      throw new Error("サーバー側のエラー")
+      throw new Error('サーバー側のエラー')
     }
     data.value = response
     // data.value = await axios.get("https://aauyfekuwgfahsjkdhfaefghawjfegkuyawd")  // エラー用文章
@@ -39,15 +41,16 @@ const onSubmit = () => {
   //   },
   //   body: JSON.stringify({name: userName.value, interest: interest.value})
   // })
-  axios.post("https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json", {
-    name: userName.value,
-    interest: interest.value
-  })
-  userName.value = ""
+  axios.post(
+    'https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json',
+    {
+      name: userName.value,
+      interest: interest.value,
+    }
+  )
+  userName.value = ''
   interest.value = []
 }
-
-
 </script>
 
 <template>
@@ -60,7 +63,7 @@ const onSubmit = () => {
         v-focus
         name="user-name"
         type="text"
-      >
+      />
     </div>
     <div class="form-control">
       <h2>What are you interested in?</h2>
@@ -71,7 +74,7 @@ const onSubmit = () => {
           name="interest"
           type="checkbox"
           value="react"
-        >
+        />
         <label for="interest-react">React.js</label>
       </div>
       <div>
@@ -81,7 +84,7 @@ const onSubmit = () => {
           name="interest"
           type="checkbox"
           value="vue"
-        >
+        />
         <label for="interest-vue">Vue.js</label>
       </div>
       <div>
@@ -91,13 +94,11 @@ const onSubmit = () => {
           name="interest"
           type="checkbox"
           value="angular"
-        >
+        />
         <label for="interest-angular">Angular.js</label>
       </div>
     </div>
-    <div v-if="isLoading">
-      Loading...
-    </div>
+    <div v-if="isLoading">Loading...</div>
     <div v-else>
       {{ data }}
     </div>
@@ -105,9 +106,7 @@ const onSubmit = () => {
       {{ err }}
     </div>
     <div>
-      <button @click.prevent="onSubmit">
-        Save Data
-      </button>
+      <button @click.prevent="onSubmit">Save Data</button>
     </div>
   </form>
 </template>
@@ -147,15 +146,15 @@ select {
   width: auto;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
   display: inline-block;
   width: auto;
   margin-right: 1rem;
 }
 
-input[type="checkbox"] + label,
-input[type="radio"] + label {
+input[type='checkbox'] + label,
+input[type='radio'] + label {
   font-weight: normal;
 }
 

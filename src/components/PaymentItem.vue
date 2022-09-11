@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const itemName1 = "Desk"
-const itemName2 = "Bike"
+const itemName1 = 'Desk'
+const itemName2 = 'Bike'
 
 const price1 = 40000
 const price2 = 20000
 
-const url1 = "https://www.google.com"
+const url1 = 'https://www.google.com'
 </script>
 
 <template>

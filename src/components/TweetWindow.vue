@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref } from 'vue'
 
-import TweetPostForm from "./TweetPostForm.vue";
-import TweetList from "./TweetList.vue";
+import TweetPostForm from './TweetPostForm.vue'
+import TweetList from './TweetList.vue'
 
-const tweets = ref([{id: 0, description: "Hello, world!"}, {id: 1, description: "This is the second tweet."}])
+const tweets = ref([
+  { id: 0, description: 'Hello, world!' },
+  { id: 1, description: 'This is the second tweet.' },
+])
 // const inputtingDescription = ref<string>("")
 
 const postTweet = (description: string) => {
-    const tweet = {id: Math.random(), description}
-    tweets.value.push(tweet)
-    // description = ""
+  const tweet = { id: Math.random(), description }
+  tweets.value.push(tweet)
+  // description = ""
 }
 
 const deleteTweet = (id: number) => {
-    tweets.value = tweets.value.filter(t => t.id !== id)
+  tweets.value = tweets.value.filter((t) => t.id !== id)
 }
 </script>
 
@@ -23,14 +26,9 @@ const deleteTweet = (id: number) => {
     <h1>Tweeter</h1>
     <TweetPostForm @post-tweet="postTweet" />
     <div class="flex flex-col items-center p-4">
-      <p v-show="tweets.length <= 0">
-        No tweets have been added
-      </p>
+      <p v-show="tweets.length <= 0">No tweets have been added</p>
       <ul>
-        <TweetList
-          :tweets="tweets"
-          @delete-tweet="deleteTweet"
-        />
+        <TweetList :tweets="tweets" @delete-tweet="deleteTweet" />
       </ul>
     </div>
   </div>

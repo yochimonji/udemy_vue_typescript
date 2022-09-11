@@ -1,23 +1,27 @@
 <script setup lang="ts">
-    import { ref, defineEmits, computed } from 'vue';
+import { ref, defineEmits, computed } from 'vue'
 
-    const inputtingName = ref<string>("")
-    const inputtingAge = ref<number>(0)
+const inputtingName = ref<string>('')
+const inputtingAge = ref<number>(0)
 
-    const emit = defineEmits(["register"])
-    const register = () => {
-        const person = { id: Math.random(), name: inputtingName.value, age: inputtingAge}
-        emit("register", person)
-    }
+const emit = defineEmits(['register'])
+const register = () => {
+  const person = {
+    id: Math.random(),
+    name: inputtingName.value,
+    age: inputtingAge,
+  }
+  emit('register', person)
+}
 
-    const nameLengthLimit = 15
-    const isValidName = computed(() => {
-        if (inputtingName.value.length >= nameLengthLimit) {
-            return false
-        } else {
-            return true
-        }
-    })
+const nameLengthLimit = 15
+const isValidName = computed(() => {
+  if (inputtingName.value.length >= nameLengthLimit) {
+    return false
+  } else {
+    return true
+  }
+})
 </script>
 
 <template>
@@ -30,19 +34,18 @@
           type="text"
           class="border rounded w-3/5"
           :class="isValidName ? 'bg-white' : 'bg-red-300'"
-        >
+        />
       </div>
-      <span
-        v-show="!isValidName"
-        class="text-red-400"
-      >{{ nameLengthLimit }} characters or less, please</span>
+      <span v-show="!isValidName" class="text-red-400"
+        >{{ nameLengthLimit }} characters or less, please</span
+      >
       <div class="flex justify-between pb-4">
         <span>age:</span>
         <input
           v-model="inputtingAge"
           type="number"
           class="border rounded w-3/5"
-        >
+        />
       </div>
     </div>
     <button

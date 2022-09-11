@@ -38,19 +38,13 @@
               C198.163,438.291,198.244,423.055,198.263,407.819z"
         />
       </g>
-      <circle
-        fill="#020202"
-        cx="254.831"
-        cy="164.509"
-        r="20.812"
-      />
+      <circle fill="#020202" cx="254.831" cy="164.509" r="20.812" />
     </g>
   </svg>
 </template>
-  
-  <script lang="ts">
-  export default {
-    name: "RocketIcon",
-  };
-  </script>
-  
+
+<script lang="ts">
+export default {
+  name: 'RocketIcon',
+}
+</script>
