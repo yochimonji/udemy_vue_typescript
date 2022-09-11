@@ -1,52 +1,60 @@
 <script setup lang="ts">
-import { DirectiveBinding, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
+import axios from "axios"
 
 const vFocus = {
-  mounted: (el: HTMLElement, biding: DirectiveBinding) => {
+  mounted: (el: HTMLElement) => {
     el.focus()
-
-    if (biding.modifiers.alert) {
-      el.style.backgroundColor = "pink"
-    }
   }
 }
 
-const userName = ref<string>("")
-const from = ref<string>("japan")
-const interest = ref<string[]>([])
-const radios = ref<string[]>([])
+const userName = ref<string>('')
+const interest = ref([])
+const data = ref()
+const isLoading = ref<boolean>(false)
+const err = ref()
 
-watch(interest, () => {
-  console.log("interest", interest.value)
+onMounted(async () => {
+  isLoading.value = true
+  try {
+    const response = await axios.get("https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json")
+    if (response.status !== 200) {
+      throw new Error("サーバー側のエラー")
+    }
+    data.value = response
+    // data.value = await axios.get("https://aauyfekuwgfahsjkdhfaefghawjfegkuyawd")  // エラー用文章
+  } catch (e) {
+    // err.value = new Error("エラーが発生しました")
+    err.value = e
+  }
+  isLoading.value = false
+  console.log(data.value)
 })
 
 const onSubmit = (e: Event) => {
-  console.log("username is ", userName.value)
-  console.log("from is ", from.value)
-  console.log("interest is ", interest.value)
-  console.log("radio is ", radios.value)
-
+  // fetch("https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   },
+  //   body: JSON.stringify({name: userName.value, interest: interest.value})
+  // })
+  axios.post("https://udemy-vue-typescript-default-rtdb.firebaseio.com/surveys.json", {
+    name: userName.value,
+    interest: interest.value
+  })
+  userName.value = ""
   interest.value = []
 }
+
+
 </script>
 
 <template>
   <form>
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-focus.alert/>
-    </div>
-    <div class="form-control">
-      <label for="age">Your Age</label>
-      <input id="age" name="age" type="number" />
-    </div>
-    <div class="form-control">
-      <label for="from">Where Are you from?</label>
-      <select id="from" name="from" v-model="from">
-        <option value="japan">Japan</option>
-        <option value="china">China</option>
-        <option value="others">Others</option>
-      </select>
+      <input id="user-name" name="user-name" type="text" v-model.trim="userName" v-focus />
     </div>
     <div class="form-control">
       <h2>What are you interested in?</h2>
@@ -59,25 +67,19 @@ const onSubmit = (e: Event) => {
         <label for="interest-vue">Vue.js</label>
       </div>
       <div>
-        <input id="interest-angular" name="interest" type="checkbox" value="angular" v-model="interest" />
+        <input
+          id="interest-angular"
+          name="interest"
+          type="checkbox"
+          value="angular"
+          v-model="interest"
+        />
         <label for="interest-angular">Angular.js</label>
       </div>
     </div>
-    <div class="form-control">
-      <h2>How do you learn?</h2>
-      <div>
-        <input id="how-video" name="how" type="radio" value="video" v-model="radios" />
-        <label for="how-video">Video Courses</label>
-      </div>
-      <div>
-        <input id="how-books" name="how" type="radio" value="books" v-model="radios" />
-        <label for="how-books">Books</label>
-      </div>
-      <div>
-        <input id="how-other" name="how" type="radio" value="others" v-model="radios" />
-        <label for="how-other">Other</label>
-      </div>
-    </div>
+    <div v-if="isLoading">Loading...</div>
+    <div v-else>{{ data }}</div>
+    <div v-if="err">{{ err }}</div>
     <div>
       <button @click.prevent="onSubmit">Save Data</button>
     </div>
