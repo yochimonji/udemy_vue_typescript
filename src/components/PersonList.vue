@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'
-import { Person } from "./PersonWindow.vue"
+import { Person } from './PersonWindow.vue'
 
 type Props = {
   persons: Person[]
